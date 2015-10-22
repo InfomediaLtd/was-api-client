@@ -42,7 +42,7 @@
         <form class="col-md-offset-1" onsubmit="event.preventDefault();login()">
             <div class="form-group">
                 <label>Username:
-                    <input type="text" name="username" value=""/>
+                    <input type="email" name="username" value=""/>
                 </label>
             </div>
             <div class="form-group">
@@ -58,9 +58,8 @@
                 </label>
             </div>
             <br/>
-            <button>Log In</button>
+            <button type="submit" class="btn btn-primary">Log In</button>
         </form>
-        <br/><br/>
     </div>
     <div id="appointments" style="display:none" class="col-md-6">
         <h1>Get Appointments</h1><br/>
@@ -87,7 +86,7 @@
 }
         </textarea>
         <br/>
-        <button onclick="getAppointments()">Get Appointments</button>
+        <button type="submit" class="btn btn-primary" onclick="getAppointments()">Get Appointments</button>
     </div>
 
 </div>
