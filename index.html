@@ -1,12 +1,103 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>WAS API Client Demo</title>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-todo
+    <title>WAS API Client Demo</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+</head>
+
+
+<body class="container">
+
+<br/>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Login</h1><br/>
+
+        <p>In order to use the Infomedia API you should first log in. You can user your username and password. If you've
+            been given a Refresh Token by Infomedia then you can use that for logging in.</p>
+
+        <p>The <a href="http://api-sandbox.superservice.com/v1/auth/docs/">Login</a> service will generate an Access
+            Token that should be used to access all other Infomedia API services.</p>
+
+        <p>You can view the full documentation of the Authentication service here:
+            <br/>
+            <a href="http://api-sandbox.superservice.com/v1/auth/docs/">http://api-sandbox.superservice.com/v1/auth/docs/</a>
+        </p>
+
+        <br/>
+
+        <p>Please choose one of the following login options:</p>
+
+        <br/>
+
+        <form class="col-md-offset-1" onsubmit="event.preventDefault();login()">
+            <div class="form-group">
+                <label>Username:
+                    <input type="text" name="username" value=""/>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Password:
+                    <input type="password" name="password" value=""/>
+                </label>
+            </div>
+            Or
+            <br/><br/>
+            <div class="form-group">
+                <label>Refresh Token:
+                    <input type="text" name="refreshToken" value=""/>
+                </label>
+            </div>
+            <br/>
+            <button>Log In</button>
+        </form>
+        <br/><br/>
+    </div>
+    <div id="appointments" style="display:none" class="col-md-6">
+        <h1>Get Appointments</h1><br/>
+
+        <p>Now that you're logged in you can try calling the <a href="http://api-sandbox.superservice.com/v1/was/docs/">Get
+            Appointments</a> service.</p>
+
+        <p>You can view the full documentation of the WAS service here:
+            <br/>
+            <a href="http://api-sandbox.superservice.com/v1/was/docs/">http://api-sandbox.superservice.com/v1/was/docs/</a>
+        </p>
+
+        <p>The following JSON will be posted to the service. Click the button below to call the <b>/appointmentGet</b>
+            service.</p>
+
+        <textarea id="getAppointmentsRequest" style="width:450px;height:200px">
+{
+    "transactionHeader": {
+        "dealerID": "12345"
+    },
+    "dmsDealerID": "12345",
+    "appointmentDateTimeFromLocal": "2015-10-14T10:08:15Z",
+    "appointmentDateTimeToLocal": "2015-10-15T10:08:15Z"
+}
+        </textarea>
+        <br/>
+        <button onclick="getAppointments()">Get Appointments</button>
+    </div>
+
+</div>
+<hr/>
+<span id="output"></span>
+
 
 </body>
+
+<script src="util.js"></script>
+<script src="main.js"></script>
+
 </html>
