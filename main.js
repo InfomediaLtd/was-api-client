@@ -46,10 +46,10 @@ function getAppointments() {
 
     post(url, dataToPost, function(response) {
 
-        // format JSON
-        var formattedResponse = JSON.stringify(JSON.parse(response), null, "\t");
-        formattedResponse = formattedResponse.replace(/([,{}])/g,"$1<br/>").replace(/\t/g,"&nbsp;&nbsp;");
+        output("Received the following response:<br/>" + response);
 
-        output("Received the following response:<br/>" + formattedResponse);
+        document.all.getAppointmentsRequestResult.value = JSON.stringify(JSON.parse(response), null, 4);
+        document.all.getAppointmentsRequestResult.style.display = "block";
+
     });
 }
