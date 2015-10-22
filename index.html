@@ -22,11 +22,12 @@
     <div class="col-md-6">
         <h1>Login</h1><br/>
 
-        <p>In order to use the Infomedia API you should first log in. You can user your username and password. If you've
-            been given a Refresh Token by Infomedia then you can use that for logging in.</p>
+        <p>In order to use the Infomedia API you should first log in. You can use your username and password for
+            Infomedia's apps. If you've been given a token by Infomedia then you can use that for logging in.</p>
 
         <p>The <a href="http://api-sandbox.superservice.com/v1/auth/docs/">Login</a> service will generate an Access
-            Token that should be used to access all other Infomedia API services.</p>
+            Token that grants you access to all authorized Infomedia API services. You should pass it in the
+            "Authorization" header in all API calls.</p>
 
         <p>You can view the full documentation of the Authentication service here:
             <br/>
@@ -52,6 +53,7 @@
             </div>
             Or
             <br/><br/>
+
             <div class="form-group">
                 <label>Refresh Token:
                     <input type="text" name="refreshToken" value=""/>
