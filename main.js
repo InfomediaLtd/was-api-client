@@ -1,7 +1,6 @@
 var accessToken = "";
 
-var baseUrl = "http://ie-internal-infomedia-api-70-was-1.superservice.com/v1";
-//var baseUrl = "http://api-sandbox.superservice.com/v1";
+var baseUrl = "https://api-sandbox.superservice.com/v1";
 
 function login() {
 

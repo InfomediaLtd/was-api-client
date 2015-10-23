@@ -29,7 +29,7 @@ function call(url, method, dataToPost, callback) {
 
     if (accessToken) {
         // set authorization token in header
-        xmlhttp.setRequestHeader("Authorization", "accessToken");
+        xmlhttp.setRequestHeader("Authorization", accessToken);
     }
 
     xmlhttp.send(dataToPost);
