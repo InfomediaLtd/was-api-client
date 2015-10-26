@@ -20,7 +20,8 @@ function call(url, method, dataToPost, callback) {
             if (xmlhttp.status == 200) {
                 callback(xmlhttp.responseText);
             } else {
-                outputError("HTTP Reqeust Failed. URL: " + url);
+                var errorMessage = (xmlhttp.responseText?xmlhttp.responseText:"HTTP Reqeust Failed" + ". URL: " + url);
+                outputError(errorMessage);
             }
         }
     };
