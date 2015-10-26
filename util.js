@@ -38,8 +38,6 @@ function call(url, method, dataToPost, callback) {
 // produce a nice error message based on the information in the request
 function getErrorMessage(request, url) {
 
-    console.log(request);
-
     var errorMessage = "HTTP Request Failed. URL: " + url;
     if (request.responseText && request.responseText.indexOf("{") == 0) {
         try {
