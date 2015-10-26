@@ -14,24 +14,47 @@ function get(url, callback) {
 }
 
 function call(url, method, dataToPost, callback) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4) {
-            if (xmlhttp.status == 200) {
-                callback(xmlhttp.responseText);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (request.readyState == 4) {
+            if (request.status == 200) {
+                callback(request.responseText);
             } else {
-                var errorMessage = (xmlhttp.responseText?xmlhttp.responseText:"HTTP Reqeust Failed" + ". URL: " + url);
-                outputError(errorMessage);
+                outputError(getErrorMessage(request, url));
             }
         }
     };
-    xmlhttp.open(method, url, true);
-    xmlhttp.setRequestHeader("Accept","application/json");
+    request.open(method, url, true);
+    request.setRequestHeader("Accept","application/json");
 
     if (accessToken) {
         // set authorization token in header
-        xmlhttp.setRequestHeader("Authorization", accessToken);
+        request.setRequestHeader("Authorization", accessToken);
     }
 
-    xmlhttp.send(dataToPost);
+    request.send(dataToPost);
+}
+
+// produce a nice error message based on the information in the request
+function getErrorMessage(request, url) {
+
+    console.log(request);
+
+    var errorMessage = "HTTP Request Failed. URL: " + url;
+    if (request.responseText && request.responseText.indexOf("{") == 0) {
+        try {
+            var responseJson = JSON.parse(request.responseText);
+            if (responseJson) {
+                if (responseJson.status) {
+                    errorMessage = "HTTP Request failed with status " + responseJson.status;
+                }
+                if (responseJson.errors && responseJson.errors.length > 0) {
+                    errorMessage = errorMessage + " : " + responseJson.errors[0].description;
+                }
+            }
+        } catch (e) {
+            // ignore
+        }
+    }
+    return errorMessage;
 }
