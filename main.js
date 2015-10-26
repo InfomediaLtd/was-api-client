@@ -2,6 +2,12 @@ var accessToken = "";
 
 var baseUrl = "https://api-sandbox.superservice.com/v1";
 
+var queryParams = getQueryParams();
+// allow overriding the baseUrl
+if (queryParams.baseUrl) {
+    baseUrl = queryParams.baseUrl;
+}
+
 function login() {
 
     var url = baseUrl + "/auth/login";
